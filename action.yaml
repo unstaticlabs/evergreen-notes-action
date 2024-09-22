@@ -1,0 +1,35 @@
+name: "Evergreen Notes"
+description: "Transform markdown notes into an evergreen notes website"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        path: notes
+
+    - name: Checkout tools repo
+      uses: actions/checkout@v4
+      with:
+        repository: unstaticlabs/evergreen-notes-markdown-website
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: yarn
+      shell: bash
+    
+    - name: Build index
+      run: yarn build:index
+      shell: bash
+
+    - name: Move notes to public
+      run: mv notes public/notes
+      shell: bash
+
+    - name: Build
+      run: yarn build
+      shell: bash
