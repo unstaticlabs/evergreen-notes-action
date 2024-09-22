@@ -4,15 +4,15 @@ description: "Transform markdown notes into an evergreen notes website"
 runs:
   using: "composite"
   steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        path: notes
-
     - name: Checkout tools repo
       uses: actions/checkout@v4
       with:
         repository: unstaticlabs/evergreen-notes-markdown-website
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        path: notes
 
     - uses: actions/setup-node@v3
       with:
