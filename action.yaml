@@ -12,9 +12,17 @@ runs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        path: notes
+        path: repo
 
-    - uses: actions/setup-node@v3
+    - name: Copy config
+      run: mv repo/config.json ./config.json
+      shell: bash
+
+    - name: Copy notes
+      run: mv repo/notes ./notes
+      shell: bash
+
+    - uses: actions/setup-node@v4
       with:
         node-version: 20
 
