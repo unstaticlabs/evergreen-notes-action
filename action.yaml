@@ -18,8 +18,8 @@ runs:
       run: mv repo/config.json ./config.json
       shell: bash
 
-    - name: Copy notes
-      run: mv repo/notes ./notes
+    - name: Clean and copy notes
+      run: rm -rf ./notes && mv repo/notes ./
       shell: bash
 
     - uses: actions/setup-node@v4
